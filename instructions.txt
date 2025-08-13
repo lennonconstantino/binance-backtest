@@ -2,7 +2,26 @@
 npm init -y
 
 # Referencia da API para consumir:
-github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data
+https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data
+Response:
+``` json
+[
+  [
+    1499040000000,      // Kline open time
+    "0.01634790",       // Open price
+    "0.80000000",       // High price
+    "0.01575800",       // Low price
+    "0.01577100",       // Close price
+    "148976.11427815",  // Volume
+    1499644799999,      // Kline Close time
+    "2434.19055334",    // Quote asset volume
+    308,                // Number of trades
+    "1756.87402397",    // Taker buy base asset volume
+    "28.46694368",      // Taker buy quote asset volume
+    "0"                 // Unused field, ignore.
+  ]
+]
+```
 
 # Instalando pacotes
 npm install axios
@@ -12,5 +31,6 @@ npm install axios
 - O Interval é no maximo 1000, se vc usar um tempo gráfico de 15min, teremos 15000/60/24 = 10 dias
 - Trabalhar com o startTime para pegarmos uma janela maior de candles
 - startTime, não pode ser um valor fixo.
+- Vamos trabalhar com os fechamentos das velas candles.
 
 
