@@ -47,8 +47,11 @@ async function doBacktest() {
             ? orderPrice * (1 + (PROFITABILITY / 100))
             : orderPrice * (1 - (PROFITABILITY / 100));
 
+        // Sempre vou vender quando estiver no ultimo candle
+        const isLastCandle = i === closes.length - 1;
+        
         if (isOpened) { // tenho moeda, Quero vender
-            if (currentCandle >= targetPrice) {
+            if (currentCandle >= targetPrice || isLastCandle) {
                 qtdSells++;
                 isOpened = false;
                 console.log(`Vendeu no preço ${currentCandle}`);
@@ -60,6 +63,8 @@ async function doBacktest() {
                 console.log("Comprou no preço " + currentCandle);
             }
 
+            // para evitar uma queda brusca ou agulhada. 
+            // pois pode acontecer do robor ficar esperando eternamente.
             orderPrice = currentCandle;
         }
     }
