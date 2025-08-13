@@ -80,7 +80,7 @@ async function doBacktest() {
     console.log("Fechou no preço " + lastCandle);
     console.log("Operações: " + qtdSells);
     console.log(`PnL Trade: ${accPnl.toFixed(2)}%`);
-    console.log(`PnL Hold: ${accPnl.toFixed(2)}%`);
+    console.log(`PnL Hold: ${holdPnl.toFixed(2)}%`);
 
 }
 
