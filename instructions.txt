@@ -7,3 +7,10 @@ github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestic
 # Instalando pacotes
 npm install axios
 
+# Observações
+- Nao podemos consumir a API Klines 3000 requests por min - Weight: 2
+- O Interval é no maximo 1000, se vc usar um tempo gráfico de 15min, teremos 15000/60/24 = 10 dias
+- Trabalhar com o startTime para pegarmos uma janela maior de candles
+- startTime, não pode ser um valor fixo.
+
+

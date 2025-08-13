@@ -1,6 +1,15 @@
-console.log("Hello World!");
+const axios = require("axios");
 
-// 1. download dos dados historicos
-// 2. processamento da  estratégia sobre os dados
-// 3. análise de performance
+const SYMBOL = "ADAUSDT";
+const INTERVAL = "15m";
+
+const API_KLINES = "api/v3/klines";
+
+async function downloadCandles() {
+    const startTime = Date.now() - (365 * 24 * 60 * 60 * 1000);
+    const response = await axios.get(`https://api.binance.com/${API_KLINES}?symbol=${SYMBOL}&interval=${INTERVAL}&limit=1000&startTime=${startTime}`);
+    console.log(response.data);
+}
+
+downloadCandles();
 
