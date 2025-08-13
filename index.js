@@ -15,7 +15,10 @@ async function downloadCandles(startTime) {
     const response = await axios.get(`https://api.binance.com/${API_KLINES}?symbol=${SYMBOL}&interval=${INTERVAL}&limit=1000&startTime=${startTime}`);
     const closes = response.data.map(k => k[4]).reduce((a, b) => a + "\n" + b);
 
-    fs.writeFileSync(FILENAME, closes);
+    if (fs.existsSync(FILENAME))
+        fs.appendFileSync(FILENAME, "\n" + closes);
+    else
+        fs.writeFileSync(FILENAME, closes);
     // Recursivo
     await downloadCandles(response.data[response.data.length - 1][6] + 1)
 }
