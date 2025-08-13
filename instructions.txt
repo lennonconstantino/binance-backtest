@@ -1,0 +1,3 @@
+# iniciar projeto node
+npm init -y
+
