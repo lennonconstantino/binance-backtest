@@ -24,5 +24,13 @@ async function downloadCandles(startTime) {
 }
 
 const startTime = TIMESTAMP - (365 * 24 * 60 * 60 * 1000);
-downloadCandles(startTime);
+//downloadCandles(startTime);
 
+// Script de exemplo - Etapa 2
+async function doBacktest() {
+    let closes = fs.readFileSync(FILENAME, {encoding: "utf-8"});
+    closes = closes.split("\n").map(c => parseFloat(c));
+    console.log(closes);    
+}
+
+doBacktest();
