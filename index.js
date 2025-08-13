@@ -75,9 +75,12 @@ async function doBacktest() {
 
     // Regra - o meu script nunca vai terminar aberto, se chegar na ultima vela, eu fecho.
     const lastCandle = closes[closes.length - 1];
+    const holdPnl = ((lastCandle * 100) /firstCandle) - 100;
+
     console.log("Fechou no preço " + lastCandle);
     console.log("Operações: " + qtdSells);
     console.log(`PnL Trade: ${accPnl.toFixed(2)}%`);
+    console.log(`PnL Hold: ${accPnl.toFixed(2)}%`);
 
 }
 
