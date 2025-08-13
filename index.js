@@ -37,6 +37,7 @@ async function doBacktest() {
     let isOpened = true; // aberto = comprado = holding
     const firstCandle = closes[0];
     let orderPrice = firstCandle; // Preço que eu comprei
+    let accPnl = 0;
     console.log("Abriu e comprou no preço " + firstCandle);
 
     // logic lives here!
@@ -52,9 +53,12 @@ async function doBacktest() {
         
         if (isOpened) { // tenho moeda, Quero vender
             if (currentCandle >= targetPrice || isLastCandle) {
+                const pnl = ((currentCandle * 100) / orderPrice) - 100; // profit and loss
+                accPnl += pnl;
+
                 qtdSells++;
                 isOpened = false;
-                console.log(`Vendeu no preço ${currentCandle}`);
+                console.log(`Vendeu com ${pnl.toFixed(2)}% de lucro no preço ${currentCandle}`);
             }
         }
         else if (!isOpened) { // Estou sem moeda, quero comprar
@@ -73,6 +77,7 @@ async function doBacktest() {
     const lastCandle = closes[closes.length - 1];
     console.log("Fechou no preço " + lastCandle);
     console.log("Operações: " + qtdSells);
+    console.log(`PnL Trade: ${accPnl.toFixed(2)}%`);
 
 }
 
